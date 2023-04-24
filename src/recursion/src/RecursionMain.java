@@ -3,7 +3,15 @@ import java.util.List;
 
 public class RecursionMain {
     public static void main(String[] args) {
+        var main = new RecursionMain();
+        main.deepRecursion();
+        main.tailRecursion();
+    }
 
+    private void tailRecursion() {
+    }
+
+    private void deepRecursion() {
         var sum = sum(new ArrayList<>() {
             {
                 add(1);
@@ -15,17 +23,18 @@ public class RecursionMain {
         });
 
         System.out.println("sum = " + sum);
-
     }
 
-    private static Integer sum(List lists) {
-        if (lists.isEmpty()) return 0;
-        var first = lists.get(0);
+    private Integer sum(List list) {
+        if (list.isEmpty()) return 0;
+        var first = list.get(0);
         return (
                 first instanceof List
-                        ? sum((List) first) + sum(lists.subList(1, lists.size()))
-                        : lists.stream().mapToInt(
-                        (o) -> o instanceof Integer ? (Integer) o : sum((List) o)).sum()
+                        ? sum((List) first) + sum(list.subList(1, list.size()))
+                        : list
+                        .stream()
+                        .mapToInt(
+                                (o) -> o instanceof Integer ? (Integer) o : sum((List) o)).sum()
         );
     }
 }
