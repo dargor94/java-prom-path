@@ -1,14 +1,15 @@
-import java.util.ArrayList;
-import java.util.List;
+import java.util.*;
 
 public class RecursionMain {
     public static void main(String[] args) {
         var main = new RecursionMain();
         main.deepRecursion();
         main.tailRecursion();
+        System.out.println("RecursionMain.factorialStack = " + main.factorialStack(1, 1, 2, 3, 4, 5));
     }
 
     private void deepRecursion() {
+        System.out.println("RecursionMain.deepRecursion");
         var sum = deepSum(new ArrayList<>() {
             {
                 add(1);
@@ -35,6 +36,16 @@ public class RecursionMain {
         );
     }
 
+    private Integer factorialStack(int result, int... args) {
+        Stack<Integer> stack = new Stack<>();
+        Arrays.stream(args).forEach(stack::push);
+        do {
+            Integer element = stack.pop();
+            result *= element;
+        } while (!stack.empty());
+        return result;
+    }
+
     /**
      * Tail recursion es un caso de recursividad en el cual la llamada recursiva se da
      * en la ultima instruccion de la funcion o porcion de codigo, teniendo ademas la particularidad de que
@@ -43,6 +54,7 @@ public class RecursionMain {
      * luego de la llamada recursiva.
      */
     private void tailRecursion() {
+        System.out.println("RecursionMain.tailRecursion");
         var list = List.of(1, 2, 3, 4, 5);
         var list1 = List.of(10);
         var list2 = List.of(10, 3, 4);
