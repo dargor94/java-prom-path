@@ -2,7 +2,9 @@
 <project version="4">
   <component name="ProjectModuleManager">
     <modules>
-      <module fileurl="file://$PROJECT_DIR$/src/recursion/recursion.iml" filepath="$PROJECT_DIR$/src/recursion/recursion.iml" />
+      <module fileurl="file://$PROJECT_DIR$/src/java-prom-path/java-prom-path.iml" filepath="$PROJECT_DIR$/src/java-prom-path/java-prom-path.iml" />
+      <module fileurl="file://$PROJECT_DIR$/src/java-prom-path/recursion/recursion.iml" filepath="$PROJECT_DIR$/src/java-prom-path/recursion/recursion.iml" />
+      <module fileurl="file://$PROJECT_DIR$/src/java-prom-path/threads/threads.iml" filepath="$PROJECT_DIR$/src/java-prom-path/threads/threads.iml" />
     </modules>
   </component>
 </project>
