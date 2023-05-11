@@ -44,7 +44,6 @@ public class ThreadsMain {
         System.out.println(pool.invoke(new FibonacciTask(40)));
         var finishTime = System.currentTimeMillis();
 
-
         System.out.println("---------- Printing fibonacci v2----------");
         var initTime2 = System.currentTimeMillis();
         System.out.println(pool.invoke(new FibonacciTaskVersionTwo(40)));
