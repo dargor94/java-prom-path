@@ -17,7 +17,7 @@ public class ThreadsMain {
 
     void forkJoin() {
 
-        var longList = LongStream.rangeClosed(1, 1000000).boxed().collect(Collectors.toList());
+        var longList = LongStream.rangeClosed(1, 10000000).boxed().collect(Collectors.toList());
         var action = new ListPrinter(longList);
 
         System.out.println("---------- Printing integers (Parallel) ----------");
@@ -25,15 +25,7 @@ public class ThreadsMain {
         action.invoke();
         var parallelFinishTime = System.currentTimeMillis();
 
-        System.out.println("---------- Printing integers (Sequential) ----------");
-        var initTime = System.currentTimeMillis();
-        for (Long l : longList) {
-            System.out.println("l = " + l);
-        }
-        var finishTime = System.currentTimeMillis();
-
-        System.out.println("Running Time [Parallel] = " + (parallelFinishTime - parallelInitTime));
-        System.out.println("Running Time [Sequential] = " + (finishTime - initTime));
+        System.out.println("Running Time = " + (parallelFinishTime - parallelInitTime));
 
     }
 
