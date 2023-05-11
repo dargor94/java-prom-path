@@ -1,55 +1,83 @@
 import java.util.List;
+import java.util.concurrent.ForkJoinPool;
 import java.util.concurrent.RecursiveAction;
 import java.util.concurrent.RecursiveTask;
 import java.util.stream.Collectors;
-import java.util.stream.IntStream;
+import java.util.stream.LongStream;
 
 public class ThreadsMain {
+    ForkJoinPool pool = new ForkJoinPool(Runtime.getRuntime().availableProcessors());
+
     public static void main(String[] args) {
         var main = new ThreadsMain();
         main.forkJoin();
         main.fibonacci();
-        main.enhancedFibonacci();
     }
 
+
     void forkJoin() {
-        var intsList = IntStream.rangeClosed(1, 10).boxed().collect(Collectors.toList());
-        var action = new ListPrinter(intsList);
+
+        var longList = LongStream.rangeClosed(1, 1000000).boxed().collect(Collectors.toList());
+        var action = new ListPrinter(longList);
+
+        System.out.println("---------- Printing integers (Parallel) ----------");
+        var parallelInitTime = System.currentTimeMillis();
         action.invoke();
+        var parallelFinishTime = System.currentTimeMillis();
+
+        System.out.println("---------- Printing integers (Sequential) ----------");
+        var initTime = System.currentTimeMillis();
+        for (Long l : longList) {
+            System.out.println("l = " + l);
+        }
+        var finishTime = System.currentTimeMillis();
+
+        System.out.println("Running Time [Parallel] = " + (parallelFinishTime - parallelInitTime));
+        System.out.println("Running Time [Sequential] = " + (finishTime - initTime));
+
     }
 
     void fibonacci() {
-        System.out.println(new FibonacciTask(0).compute());
-    }
 
-    void enhancedFibonacci() {
-        System.out.println(new EnhancedFibonacciTask(0).compute());
+        System.out.println("---------- Printing fibonacci ----------");
+        var initTime = System.currentTimeMillis();
+        System.out.println(pool.invoke(new FibonacciTask(40)));
+        var finishTime = System.currentTimeMillis();
+
+
+        System.out.println("---------- Printing fibonacci v2----------");
+        var initTime2 = System.currentTimeMillis();
+        System.out.println(pool.invoke(new FibonacciTaskVersionTwo(40)));
+        var finishTime2 = System.currentTimeMillis();
+
+        System.out.println("Running Time v1 = " + (finishTime - initTime));
+        System.out.println("Running Time v2 = " + (finishTime2 - initTime2));
     }
 
     static class ListPrinter extends RecursiveAction {
-        private final List<Integer> intsList;
+        private final List<Long> longList;
 
-        ListPrinter(List<Integer> intsList) {
-            this.intsList = intsList;
+        ListPrinter(List<Long> intsList) {
+            this.longList = intsList;
         }
 
         @Override
         protected void compute() {
-            if (intsList.size() < 2) {
-
-                for (Integer integer : intsList)
-                    System.out.println("integer = " + integer);
+            //Sequential
+            if (longList.size() < 2) {
+                for (Long l : longList)
+                    System.out.println(l);
                 return;
             }
-
-            var firstAction = new ListPrinter(getSplittedList(intsList, 0, intsList.size() / 2));
-            var secondAction = new ListPrinter(getSplittedList(intsList, intsList.size() / 2, intsList.size()));
+            //Parallel
+            var firstAction = new ListPrinter(getSplittedList(longList, 0, longList.size() / 2));
+            var secondAction = new ListPrinter(getSplittedList(longList, longList.size() / 2, longList.size()));
             invokeAll(firstAction, secondAction);
 
         }
 
-        private List<Integer> getSplittedList(List<Integer> intList, int firstIndex, int lastIndex) {
-            return intList.subList(firstIndex, lastIndex);
+        private List<Long> getSplittedList(List<Long> longList, int firstIndex, int lastIndex) {
+            return longList.subList(firstIndex, lastIndex);
         }
     }
 
@@ -76,13 +104,13 @@ public class ThreadsMain {
 
 
     /**
-     * Compute es llamado por el hilo principal. Al generar menos hilos el rendimiento es mayor.
+     * Compute es llamado por el hilo principal.
      */
-    static class EnhancedFibonacciTask extends RecursiveTask<Integer> {
+    static class FibonacciTaskVersionTwo extends RecursiveTask<Integer> {
 
         private final Integer num;
 
-        public EnhancedFibonacciTask(Integer num) {
+        public FibonacciTaskVersionTwo(Integer num) {
             this.num = num;
         }
 
