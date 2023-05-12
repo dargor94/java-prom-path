@@ -1,3 +1,4 @@
+import java.util.Arrays;
 import java.util.List;
 import java.util.stream.Collectors;
 
@@ -6,6 +7,34 @@ public class StreamMain {
     public static void main(String[] args) {
         var main = new StreamMain();
         main.filtering();
+        main.mapping();
+    }
+
+    void mapping() {
+        var numbersListA = loadNumbersList(1, 2, 3);
+        var numbersListB = loadNumbersList(4, 5);
+        var mappedList = mapList(numbersListA, numbersListB);
+        printMappedList(mappedList);
+    }
+
+    void printMappedList(String mappedList) {
+        System.out.println("mappedList = " + mappedList);
+    }
+
+    String mapList(List<Integer> numbersListA, List<Integer> numbersListB) {
+
+        return Arrays.toString(numbersListA
+                .stream()
+                .flatMap(integerA ->
+                        numbersListB
+                                .stream()
+                                .map(integerB -> Arrays.asList(integerA, integerB)))
+                .toArray());
+
+    }
+
+    List<Integer> loadNumbersList(Integer... ints) {
+        return Arrays.stream(ints).collect(Collectors.toList());
     }
 
     void filtering() {
@@ -14,18 +43,18 @@ public class StreamMain {
         printBooks(filteredBooks);
     }
 
-    private void printBooks(List<Book> filteredBooks) {
+    void printBooks(List<Book> filteredBooks) {
         filteredBooks.forEach(System.out::println);
     }
 
-    private List<Book> filterBooks(List<Book> books) {
+    List<Book> filterBooks(List<Book> books) {
         return books
                 .stream()
                 .filter(book -> book.getTitle().split(" ").length == 2)
                 .collect(Collectors.toList());
     }
 
-    private List<Book> loadBooks() {
+    List<Book> loadBooks() {
         return List.of(
                 new Book("The Trials of Mount Fanor", "Franz Kafka", 240, BookGenre.NOVEL),
                 new Book("The Maltese Falcon", "Dashiell Hammett", 634, BookGenre.THRILLER),
@@ -57,17 +86,6 @@ public class StreamMain {
             return title;
         }
 
-        public String getAuthor() {
-            return author;
-        }
-
-        public int getPages() {
-            return pages;
-        }
-
-        public BookGenre getGenre() {
-            return genre;
-        }
 
         @Override
         public String toString() {
