@@ -35,7 +35,7 @@ public class RecursionMain {
                         : list
                         .stream()
                         .mapToInt(
-                                (o) -> o instanceof Integer ? (Integer) o : deepSum((List) o)).sum()
+                                (object) -> object instanceof Integer ? (Integer) object : deepSum((List) object)).sum()
         );
     }
 
