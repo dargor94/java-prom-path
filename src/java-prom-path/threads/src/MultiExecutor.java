@@ -25,7 +25,7 @@ public class MultiExecutor {
     }
 
     private void getTasks() {
-        tasks = new ArrayList<Runnable>();
+        tasks = new ArrayList<>();
         for (int i = 0; i < 4; i++) {
             tasks.add(() -> System.out.println(Thread.currentThread().getName()));
         }
@@ -34,7 +34,7 @@ public class MultiExecutor {
     /**
      * Starts and executes all the tasks concurrently
      */
-    public void executeAll() {
+    private void executeAll() {
         // complete your code here
         List<Thread> threads = new ArrayList<>(tasks.size());
         for (Runnable task : tasks) {
