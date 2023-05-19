@@ -10,7 +10,7 @@ public class MultiExecutor {
 
     private List<Runnable> tasks;
 
-    /*
+    /**
      * @param tasks to executed concurrently
      */
     public MultiExecutor(List<Runnable> tasks) {
