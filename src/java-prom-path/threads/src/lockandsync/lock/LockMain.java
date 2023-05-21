@@ -1,13 +1,15 @@
-package lockandsync;
+package lockandsync.lock;
 
-public class LockMain implements Runnable {
+import java.util.concurrent.locks.ReentrantLock;
+
+public class LockMain {
     public static void main(String[] args) {
-        var main = new LockMain();
+        var lock = new ReentrantLock();
+        var table = new LockTable(lock);
+
+        new Thread(() -> table.print(5)).start();
+        new Thread(() -> table.print(1000)).start();
 
     }
 
-    @Override
-    public void run() {
-
-    }
 }
