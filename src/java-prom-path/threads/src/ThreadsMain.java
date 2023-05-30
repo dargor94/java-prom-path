@@ -6,7 +6,7 @@ import java.util.stream.Collectors;
 import java.util.stream.LongStream;
 
 public class ThreadsMain {
-    ForkJoinPool pool = new ForkJoinPool(Runtime.getRuntime().availableProcessors());
+    private final ForkJoinPool pool = new ForkJoinPool(Runtime.getRuntime().availableProcessors());
 
     public static void main(String[] args) {
         var main = new ThreadsMain();
