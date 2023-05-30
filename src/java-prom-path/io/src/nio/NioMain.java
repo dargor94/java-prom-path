@@ -15,7 +15,7 @@ public class NioMain {
 
     private ByteBuffer read() {
         var buffer = ByteBuffer.allocate(1024);
-        try (var inputStream = new FileInputStream("src/java-prom-path/io-and-nio/src/nio/info.txt")) {
+        try (var inputStream = new FileInputStream("src/java-prom-path/io/src/nio/info.txt")) {
             try (var inputChannel = inputStream.getChannel()) {
                 buffer.clear();
                 inputChannel.read(buffer);
@@ -27,7 +27,7 @@ public class NioMain {
     }
 
     private void write(ByteBuffer buffer) {
-        try (var outputStream = new FileOutputStream("src/java-prom-path/io-and-nio/src/nio/new.txt")) {
+        try (var outputStream = new FileOutputStream("src/java-prom-path/io/src/nio/new.txt")) {
             try (var outputChannel = outputStream.getChannel()) {
                 buffer.flip();
                 outputChannel.write(buffer);
