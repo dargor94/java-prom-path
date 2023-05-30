@@ -4,7 +4,7 @@ import org.springframework.web.reactive.function.client.WebClient;
 
 import java.util.List;
 
-public class Main {
+public class AopMain {
     public static void main(String[] args) {
 
         int val = 4;
