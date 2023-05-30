@@ -7,9 +7,7 @@ public class SyncMain {
         var table = new SyncTable();
         System.out.println("<------------------------------------------->");
         new Thread(() -> table.print(5)).start();
-        new Thread(() -> {
-            table.print(10);
-        }).start();
+        new Thread(() -> table.print(10)).start();
 
     }
 
