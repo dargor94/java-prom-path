@@ -1,9 +1,9 @@
+org/dargor/aop/controller/UserController.java
+ org.dargor.aop.controller.UserController
 org/dargor/aop/AopApplication.java
  org.dargor.aop.AopApplication
 org/dargor/aop/service/UserService.java
  org.dargor.aop.service.UserService
-org/dargor/aop/controller/UserController.java
- org.dargor.aop.controller.UserController
 org/dargor/aop/AopMain.java
  org.dargor.aop.AopMain
 org/dargor/aop/aspect/LoggingAspect.java
