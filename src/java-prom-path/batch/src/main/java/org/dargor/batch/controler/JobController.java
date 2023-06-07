@@ -23,7 +23,7 @@ public class JobController {
     @Qualifier("import-customers")
     private final Job job;
 
-    @GetMapping("/import-customer")
+    @GetMapping("")
     public String importCsvToDBJob() throws JobExecutionAlreadyRunningException, JobRestartException, JobInstanceAlreadyCompleteException, JobParametersInvalidException {
 
         JobParameters jobParameters = new JobParametersBuilder()
