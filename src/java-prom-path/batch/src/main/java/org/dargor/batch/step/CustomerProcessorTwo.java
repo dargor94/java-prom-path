@@ -5,11 +5,10 @@ import org.springframework.batch.item.ItemProcessor;
 import org.springframework.stereotype.Component;
 
 @Component
-public class CustomerProcessor implements ItemProcessor<Customer, Customer> {
-
+public class CustomerProcessorTwo implements ItemProcessor<Customer, Customer> {
     @Override
     public Customer process(Customer customer) {
-        return customer.getCountry().equals("Argentina") ? customer : null;
+        return customer.getCountry().equals("France") ? customer : null;
     }
 
 }

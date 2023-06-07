@@ -7,7 +7,7 @@ import org.springframework.batch.item.file.mapping.BeanWrapperFieldSetMapper;
 import org.springframework.batch.item.file.mapping.DefaultLineMapper;
 import org.springframework.batch.item.file.transform.DelimitedLineTokenizer;
 import org.springframework.context.annotation.Bean;
-import org.springframework.core.io.FileSystemResource;
+import org.springframework.core.io.ClassPathResource;
 import org.springframework.stereotype.Component;
 
 @Component
@@ -16,7 +16,7 @@ public class CustomerReader {
     @Bean
     public FlatFileItemReader<Customer> reader() {
         FlatFileItemReader<Customer> itemReader = new FlatFileItemReader<>();
-        itemReader.setResource(new FileSystemResource("src/java-prom-path/batch/src/main/resources/customers.csv"));
+        itemReader.setResource(new ClassPathResource("customers.csv"));
         itemReader.setName("csvReader");
         //No leemos la primer linea, porque son cabeceras
         itemReader.setLinesToSkip(1);

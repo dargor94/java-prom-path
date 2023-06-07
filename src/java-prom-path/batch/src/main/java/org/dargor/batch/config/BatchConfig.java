@@ -2,9 +2,11 @@ package org.dargor.batch.config;
 
 import lombok.AllArgsConstructor;
 import lombok.Data;
+import lombok.extern.slf4j.Slf4j;
 import org.dargor.batch.entity.Customer;
 import org.dargor.batch.repository.CustomerRepository;
 import org.dargor.batch.step.CustomerProcessor;
+import org.dargor.batch.step.CustomerProcessorTwo;
 import org.springframework.batch.core.Job;
 import org.springframework.batch.core.Step;
 import org.springframework.batch.core.configuration.annotation.EnableBatchProcessing;
@@ -19,6 +21,7 @@ import org.springframework.core.task.SimpleAsyncTaskExecutor;
 import org.springframework.core.task.TaskExecutor;
 
 @Data
+@Slf4j
 @Configuration
 @AllArgsConstructor
 @EnableBatchProcessing
@@ -37,10 +40,20 @@ public class BatchConfig {
 
     private final CustomerProcessor customerProcessor;
 
-    @Bean
+    private final CustomerProcessorTwo customerProcessorTwo;
+
+    @Bean("import-customers")
     public Job runJob() {
         return jobBuilderFactory.get("importCustomers")
                 .flow(step1())
+                .end()
+                .build();
+    }
+
+    @Bean("secondJob")
+    public Job runJobTwo() {
+        return jobBuilderFactory.get("cus")
+                .flow(step2())
                 .end()
                 .build();
     }
@@ -51,6 +64,16 @@ public class BatchConfig {
                 .<Customer, Customer>chunk(10)
                 .reader(customerReader)
                 .processor(customerProcessor)
+                .writer(customerWriter)
+                .build();
+    }
+
+    @Bean
+    public Step step2() {
+        return stepBuilderFactory.get("csv-step")
+                .<Customer, Customer>chunk(10)
+                .reader(customerReader)
+                .processor(customerProcessorTwo)
                 .writer(customerWriter)
                 .build();
     }
