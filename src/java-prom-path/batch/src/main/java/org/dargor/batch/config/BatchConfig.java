@@ -18,8 +18,8 @@ import org.springframework.context.annotation.Configuration;
 import org.springframework.core.task.SimpleAsyncTaskExecutor;
 import org.springframework.core.task.TaskExecutor;
 
-@Configuration
 @Data
+@Configuration
 @AllArgsConstructor
 @EnableBatchProcessing
 public class BatchConfig {
@@ -40,15 +40,19 @@ public class BatchConfig {
     @Bean
     public Job runJob() {
         return jobBuilderFactory.get("importCustomers")
-                .flow(step1()).end().build();
-
+                .flow(step1())
+                .end()
+                .build();
     }
 
     @Bean
     public Step step1() {
-        return stepBuilderFactory.get("csv-step").<Customer, Customer>chunk(10)
-                .reader(customerReader).processor(customerProcessor)
-                .writer(customerWriter).build();
+        return stepBuilderFactory.get("csv-step")
+                .<Customer, Customer>chunk(10)
+                .reader(customerReader)
+                .processor(customerProcessor)
+                .writer(customerWriter)
+                .build();
     }
 
     @Bean

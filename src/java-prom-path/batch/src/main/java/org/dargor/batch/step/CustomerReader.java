@@ -18,6 +18,7 @@ public class CustomerReader {
         FlatFileItemReader<Customer> itemReader = new FlatFileItemReader<>();
         itemReader.setResource(new FileSystemResource("src/java-prom-path/batch/src/main/resources/customers.csv"));
         itemReader.setName("csvReader");
+        //No leemos la primer linea, porque son cabeceras
         itemReader.setLinesToSkip(1);
         itemReader.setLineMapper(lineMapper());
         return itemReader;
@@ -28,6 +29,10 @@ public class CustomerReader {
 
         DelimitedLineTokenizer lineTokenizer = new DelimitedLineTokenizer();
         lineTokenizer.setDelimiter(",");
+        /*
+         * Siendo false, Las lineas con menos campos (tokens) se completan con columnas vacias,
+         * las lineas con mas campos se truncan
+         */
         lineTokenizer.setStrict(false);
         lineTokenizer.setNames("id", "firstName", "lastName", "email", "country");
 
