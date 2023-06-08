@@ -2,7 +2,6 @@ package org.dargor.batch.controler;
 
 import lombok.AllArgsConstructor;
 import org.springframework.batch.core.Job;
-import org.springframework.batch.core.JobParameters;
 import org.springframework.batch.core.JobParametersBuilder;
 import org.springframework.batch.core.JobParametersInvalidException;
 import org.springframework.batch.core.launch.JobLauncher;
@@ -20,13 +19,14 @@ import org.springframework.web.bind.annotation.RestController;
 public class JobController {
 
     private final JobLauncher jobLauncher;
-    @Qualifier("import-customers")
+    //@Qualifier("import-customers")
+    @Qualifier("import-customers-all")
     private final Job job;
 
     @GetMapping("")
     public String importCsvToDBJob() throws JobExecutionAlreadyRunningException, JobRestartException, JobInstanceAlreadyCompleteException, JobParametersInvalidException {
 
-        JobParameters jobParameters = new JobParametersBuilder()
+        var jobParameters = new JobParametersBuilder()
                 .addLong("startAt", System.currentTimeMillis()).toJobParameters();
         jobLauncher.run(job, jobParameters);
 

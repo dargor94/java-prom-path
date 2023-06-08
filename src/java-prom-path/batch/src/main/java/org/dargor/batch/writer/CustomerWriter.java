@@ -1,4 +1,4 @@
-package org.dargor.batch.step;
+package org.dargor.batch.writer;
 
 import org.dargor.batch.entity.Customer;
 import org.dargor.batch.repository.CustomerRepository;
@@ -9,7 +9,7 @@ import org.springframework.stereotype.Component;
 @Component
 public class CustomerWriter {
 
-    @Bean("customer-writer")
+    @Bean("customer-csv-writer")
     public RepositoryItemWriter<Customer> writer(CustomerRepository customerRepository) {
         RepositoryItemWriter<Customer> writer = new RepositoryItemWriter<>();
         writer.setRepository(customerRepository);

@@ -1,4 +1,4 @@
-package org.dargor.batch.step;
+package org.dargor.batch.processor;
 
 import org.dargor.batch.entity.Customer;
 import org.springframework.batch.item.ItemProcessor;

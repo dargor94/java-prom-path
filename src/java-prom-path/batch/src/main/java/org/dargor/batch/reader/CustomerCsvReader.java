@@ -1,4 +1,4 @@
-package org.dargor.batch.step;
+package org.dargor.batch.reader;
 
 import org.dargor.batch.entity.Customer;
 import org.springframework.batch.item.file.FlatFileItemReader;
@@ -11,32 +11,32 @@ import org.springframework.core.io.ClassPathResource;
 import org.springframework.stereotype.Component;
 
 @Component
-public class CustomerReader {
+public class CustomerCsvReader {
 
-    @Bean
+    @Bean("customer-csv-reader")
     public FlatFileItemReader<Customer> reader() {
-        FlatFileItemReader<Customer> itemReader = new FlatFileItemReader<>();
+        var itemReader = new FlatFileItemReader<Customer>();
         itemReader.setResource(new ClassPathResource("customers.csv"));
         itemReader.setName("csvReader");
-        //No leemos la primer linea, porque son cabeceras
+        //No leemos la primera línea, porque son cabeceras
         itemReader.setLinesToSkip(1);
         itemReader.setLineMapper(lineMapper());
         return itemReader;
     }
 
     private LineMapper<Customer> lineMapper() {
-        DefaultLineMapper<Customer> lineMapper = new DefaultLineMapper<>();
+        var lineMapper = new DefaultLineMapper<Customer>();
 
-        DelimitedLineTokenizer lineTokenizer = new DelimitedLineTokenizer();
+        var lineTokenizer = new DelimitedLineTokenizer();
         lineTokenizer.setDelimiter(",");
         /*
-         * Siendo false, Las lineas con menos campos (tokens) se completan con columnas vacias,
+         * Siendo false, Las lineas con menos campos (tokens) se completan con columnas vacías,
          * las lineas con mas campos se truncan
          */
         lineTokenizer.setStrict(false);
         lineTokenizer.setNames("id", "firstName", "lastName", "email", "country");
 
-        BeanWrapperFieldSetMapper<Customer> fieldSetMapper = new BeanWrapperFieldSetMapper<>();
+        var fieldSetMapper = new BeanWrapperFieldSetMapper<Customer>();
         fieldSetMapper.setTargetType(Customer.class);
 
         lineMapper.setLineTokenizer(lineTokenizer);
