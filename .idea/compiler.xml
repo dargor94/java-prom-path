@@ -11,8 +11,5 @@
         <module name="aop.main" />
       </profile>
     </annotationProcessing>
-    <bytecodeTargetLevel>
-      <module name="batch.test" target="11" />
-    </bytecodeTargetLevel>
   </component>
 </project>

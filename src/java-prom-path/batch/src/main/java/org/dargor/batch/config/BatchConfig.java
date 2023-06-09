@@ -103,6 +103,9 @@ public class BatchConfig {
                 .reader(customerCsvReader)
                 .processor(customerProcessorTwo)
                 .writer(customerRepositoryWriter)
+                .faultTolerant()
+                .retryLimit(3)
+                .retry(Exception.class)
                 .build();
     }
 
