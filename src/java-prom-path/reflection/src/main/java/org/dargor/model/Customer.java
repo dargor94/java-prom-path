@@ -3,7 +3,6 @@ package org.dargor.model;
 public class Customer {
 
     private String id;
-
     private String email;
 
     public Customer(String id, String email) {
