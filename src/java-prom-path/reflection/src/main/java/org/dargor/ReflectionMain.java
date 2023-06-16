@@ -30,6 +30,7 @@ public class ReflectionMain {
         Arrays.stream(customersList.get(0).getClass().getDeclaredFields()).forEach(field -> System.out.println(field.getName()));
         System.out.println(customersList.get(0).getClass().getDeclaredFields()[0].getName().equals("id"));
         System.out.println(customersList.get(0).getClass().getDeclaredFields()[0].getType().getSimpleName());
+
         try {
             customersList.get(0).getClass().getDeclaredFields()[0].setAccessible(true);
             System.out.println(customersList.get(0).getClass().getDeclaredField("id").getModifiers());
@@ -39,7 +40,7 @@ public class ReflectionMain {
         }
 
         System.out.println();
-        System.out.println("------------Class------------");
+        System.out.println("------------Classes------------");
         try {
             var clazz = Class.forName("org.dargor.model.Computer");
             System.out.println(clazz.getPackage().getName());
@@ -48,7 +49,8 @@ public class ReflectionMain {
             System.out.println(Modifier.isStatic(clazz.getModifiers())
                     && Modifier.isFinal(clazz.getModifiers())
                     && Modifier.isVolatile(clazz.getModifiers()));
-        } catch (ClassNotFoundException e) {
+            System.out.println(clazz.getConstructor(String.class, String.class, String.class));
+        } catch (ClassNotFoundException | NoSuchMethodException e) {
             throw new RuntimeException(e);
         }
     }
