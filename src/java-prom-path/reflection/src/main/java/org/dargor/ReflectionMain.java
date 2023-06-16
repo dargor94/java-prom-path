@@ -42,7 +42,7 @@ public class ReflectionMain {
         System.out.println();
         System.out.println("------------Classes------------");
         try {
-            var clazz = Class.forName("org.dargor.model.Computer");
+            var clazz = Class.forName("org.dargor.model.Computer"); // Same as Computer.class or computerInstance.getClass()
             System.out.println(clazz.getPackage().getName());
             System.out.println(clazz.getSimpleName());
             System.out.println(Modifier.isPublic(clazz.getModifiers()));
