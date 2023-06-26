@@ -21,6 +21,22 @@
         </option>
       </GradleProjectSettings>
       <GradleProjectSettings>
+        <option name="externalProjectPath" value="$PROJECT_DIR$/src/java-prom-path/microservices/customers-ms" />
+        <option name="modules">
+          <set>
+            <option value="$PROJECT_DIR$/src/java-prom-path/microservices/customers-ms" />
+          </set>
+        </option>
+      </GradleProjectSettings>
+      <GradleProjectSettings>
+        <option name="externalProjectPath" value="$PROJECT_DIR$/src/java-prom-path/microservices/products-ms" />
+        <option name="modules">
+          <set>
+            <option value="$PROJECT_DIR$/src/java-prom-path/microservices/products-ms" />
+          </set>
+        </option>
+      </GradleProjectSettings>
+      <GradleProjectSettings>
         <option name="externalProjectPath" value="$PROJECT_DIR$/src/java-prom-path/reflection" />
         <option name="modules">
           <set>
