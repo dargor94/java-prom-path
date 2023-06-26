@@ -3,7 +3,7 @@ package org.dargor.product.app.service;
 import lombok.AllArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.dargor.product.app.dto.ProductDto;
-import org.dargor.product.app.dto.request.WishListDto;
+import org.dargor.product.app.dto.WishListDto;
 import org.dargor.product.core.repository.ProductRepository;
 import org.dargor.product.core.util.mapper.ProductMapper;
 import org.springframework.stereotype.Service;
@@ -22,7 +22,7 @@ public class ProductServiceImpl implements ProductService {
     @Override
     public List<ProductDto> getProducts(UUID customerId) {
         try {
-            var product = productRepository.findByCustomer_Id(customerId);
+            var product = productRepository.findByCustomerId(customerId);
             var response = productMapper.productsToProductDtoList(product);
             log.info(String.format("Product fetched successfully [customer %s] [response: %s]", customerId, response));
             return response;

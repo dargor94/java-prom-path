@@ -2,8 +2,7 @@ package org.dargor.product.app.controller;
 
 import lombok.AllArgsConstructor;
 import org.dargor.product.app.dto.ProductDto;
-import org.dargor.product.app.dto.request.WishListDto;
-import org.dargor.product.app.dto.response.WishListResponse;
+import org.dargor.product.app.dto.WishListDto;
 import org.dargor.product.app.service.ProductService;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;

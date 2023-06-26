@@ -3,8 +3,8 @@ package org.dargor.customer.app.controller;
 import lombok.AllArgsConstructor;
 import org.dargor.customer.app.dto.CustomerDto;
 import org.dargor.customer.app.dto.WishListDto;
-import org.dargor.customer.app.dto.request.CustomerCreationRequest;
-import org.dargor.customer.app.dto.request.CustomerUpdateRequest;
+import org.dargor.customer.app.dto.CustomerCreationRequestDto;
+import org.dargor.customer.app.dto.CustomerUpdateRequestDto;
 import org.dargor.customer.app.service.CustomerService;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -23,7 +23,7 @@ public class CustomerController {
     private final CustomerService customerService;
 
     @PostMapping("/create")
-    public ResponseEntity<WishListDto> createCustomer(@RequestBody @Valid CustomerCreationRequest request) {
+    public ResponseEntity<WishListDto> createCustomer(@RequestBody @Valid CustomerCreationRequestDto request) {
         var response = customerService.createCustomer(request);
         return new ResponseEntity<>(response, HttpStatus.CREATED);
     }
@@ -35,7 +35,7 @@ public class CustomerController {
     }
 
     @PutMapping("/update")
-    public ResponseEntity<CustomerDto> updateCustomer(@RequestBody @Valid CustomerUpdateRequest request) {
+    public ResponseEntity<CustomerDto> updateCustomer(@RequestBody @Valid CustomerUpdateRequestDto request) {
         var response = customerService.updateCustomer(request);
         return ResponseEntity.ok(response);
     }
