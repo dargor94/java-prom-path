@@ -1,13 +1,19 @@
 spring:
   profiles:
     active: dev
-  cloud.config:
-    profile: dev
-    enabled: true
-    fail-fast: true
-    uri: http://localhost:8888
-  application.name: customer-ms
-logging:
-  level:
-    root: info
-server.port: 9000
+  cloud:
+    config:
+      name: customer-ms
+      discovery:
+        service-id: config-server
+        enabled: true
+      retry:
+        initialInterval: 2000
+        multiplier: 1.5
+        maxInterval: 60000
+        maxAttempts: 100
+server.port: 9001
+eureka:
+  client:
+    serviceUrl:
+      defaultZone: http://localhost:8082/eureka/
