@@ -15,11 +15,9 @@ import java.util.UUID;
 @FeignClient(name = "ProductClient", url = "http://localhost:8080/product-ms/product")
 public interface ProductClient {
 
-    @LoadBalanced
     @GetMapping("/wish-list/{customerId}")
     List<ProductDto> getWishList(@PathVariable UUID customerId);
 
-    @LoadBalanced
     @PostMapping("/create")
     WishListDto createProducts(@RequestBody WishListDto products);
 

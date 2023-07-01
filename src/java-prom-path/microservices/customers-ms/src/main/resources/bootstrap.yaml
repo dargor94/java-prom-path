@@ -1,9 +1,11 @@
 spring:
+  application.name: customer-ms
   profiles:
     active: dev
   cloud:
     config:
       name: customer-ms
+      profile: dev
       discovery:
         service-id: config-server
         enabled: true

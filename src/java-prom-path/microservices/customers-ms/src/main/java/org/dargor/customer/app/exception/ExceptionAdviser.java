@@ -1,5 +1,6 @@
 package org.dargor.customer.app.exception;
 
+import feign.FeignException;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -29,6 +30,13 @@ public class ExceptionAdviser {
         var errorMessage = new ErrorMessageResponse(ErrorDefinition.ENTITY_NOT_FOUND.getMessage(), HttpStatus.BAD_REQUEST.value());
         log.error("Entity not found");
         return new ResponseEntity<>(errorMessage, HttpStatus.BAD_REQUEST);
+    }
+
+    @ExceptionHandler(FeignException.NotFound.class)
+    public final ResponseEntity<ErrorMessageResponse> genericError(FeignException.NotFound e) {
+        var errorMessage = new ErrorMessageResponse(ErrorDefinition.PATH_NOT_FOUND.getMessage(), HttpStatus.NOT_FOUND.value());
+        log.error(String.format("Exception found with code %d.", errorMessage.getCode()));
+        return new ResponseEntity<>(errorMessage, null, 490);
     }
 
     @ExceptionHandler(Exception.class)
