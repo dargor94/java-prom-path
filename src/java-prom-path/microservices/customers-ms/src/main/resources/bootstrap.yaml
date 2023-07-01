@@ -9,13 +9,10 @@ spring:
       discovery:
         service-id: config-server
         enabled: true
-      retry:
-        initialInterval: 2000
-        multiplier: 1.5
-        maxInterval: 60000
-        maxAttempts: 100
 server.port: 9001
 eureka:
+  instance:
+    preferIpAddress: true
   client:
     serviceUrl:
       defaultZone: http://localhost:8082/eureka/
