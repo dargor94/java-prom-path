@@ -1,4 +1,5 @@
 spring:
+  application.name: product-ms
   profiles:
     active: dev
   cloud:
@@ -8,6 +9,11 @@ spring:
         service-id: config-server
         enabled: true
       profile: dev
+      retry:
+        initialInterval: 2000
+        multiplier: 1.5
+        maxInterval: 60000
+        maxAttempts: 100
 server.port: 9002
 eureka:
   client:
