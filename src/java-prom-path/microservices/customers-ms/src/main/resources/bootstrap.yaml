@@ -1,7 +1,9 @@
 spring:
   application.name: customer-ms
   profiles:
-    active: dev
+    active:
+      - dev
+      - vault
   cloud:
     config:
       name: customer-ms
