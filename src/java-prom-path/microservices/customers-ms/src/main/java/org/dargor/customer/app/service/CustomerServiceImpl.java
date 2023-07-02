@@ -34,10 +34,10 @@ public class CustomerServiceImpl implements CustomerService {
             var wishListRequest = productMapper.toWishListDto(customerResponse, request.getProducts());
             var products = productClient.createProducts(wishListRequest);
             wishListRequest.setProducts(products.getProducts());
-            log.info(String.format("Customer created successfully [request %s] [response: %s]", request, wishListRequest));
+            log.info(String.format("Customer created successfully [request: %s] [response: %s]", request, wishListRequest));
             return wishListRequest;
         } catch (Exception e) {
-            log.error(String.format("Error found creating customer [request %s]", request.toString()));
+            log.error(String.format("Error found creating customer [request: %s] [error: %s]", request.toString(), e.getMessage()));
             throw e;
         }
     }
@@ -47,10 +47,10 @@ public class CustomerServiceImpl implements CustomerService {
         try {
             var customer = customerRepository.getById(customerId);
             var response = customerMapper.customerToCustomerResponse(customer);
-            log.info(String.format("Customer fetched successfully [customerId %s] [response: %s]", customerId, response.toString()));
+            log.info(String.format("Customer fetched successfully [customerId: %s] [response: %s]", customerId, response.toString()));
             return response;
         } catch (Exception e) {
-            log.error(String.format("Error found fetching customer [customerId %s]", customerId));
+            log.error(String.format("Error found fetching customer [customerId: %s] [error: %s]", customerId, e.getMessage()));
             throw e;
         }
     }
@@ -61,10 +61,10 @@ public class CustomerServiceImpl implements CustomerService {
             var customer = customerMapper.customerUpdateRequestToCustomer(request);
             var updatedCustomer = customerRepository.save(customer);
             var response = customerMapper.customerToCustomerResponse(updatedCustomer);
-            log.info(String.format("Customer updated successfully [request %s] [response: %s]", request.toString(), response.toString()));
+            log.info(String.format("Customer updated successfully [request: %s] [response: %s]", request.toString(), response.toString()));
             return response;
         } catch (Exception e) {
-            log.error(String.format("Error found updating customer [request %s]", request.toString()));
+            log.error(String.format("Error found updating customer [request: %s] [error: %s]", request.toString(), e.getMessage()));
             throw e;
         }
     }
@@ -78,11 +78,11 @@ public class CustomerServiceImpl implements CustomerService {
             log.info(String.format("Customer fetched successfully [entity %s]", customer));
 
             var response = productMapper.toWishListDto(customer, wishList);
-            log.info(String.format("Request performed successfully [request %s] [response: %s]", customerId, response.toString()));
+            log.info(String.format("Request performed successfully [request: %s] [response: %s]", customerId, response.toString()));
 
             return response;
         } catch (Exception e) {
-            log.error(String.format("Error found adding products to cart for customer [id %s]", customerId.toString()));
+            log.error(String.format("Error found adding products to cart for customer [id: %s] [error: %s]", customerId, e.getMessage()));
             throw e;
         }
     }
