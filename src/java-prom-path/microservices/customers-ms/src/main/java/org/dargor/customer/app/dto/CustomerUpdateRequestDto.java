@@ -1,7 +1,7 @@
 package org.dargor.customer.app.dto;
 
+import com.fasterxml.jackson.annotation.JsonInclude;
 import lombok.*;
-import org.dargor.customer.app.dto.AddressDto;
 
 import javax.validation.constraints.Email;
 import javax.validation.constraints.NotEmpty;
@@ -13,6 +13,7 @@ import java.util.UUID;
 @ToString
 @NoArgsConstructor
 @AllArgsConstructor
+@JsonInclude(JsonInclude.Include.NON_EMPTY)
 public class CustomerUpdateRequestDto {
 
     @NotEmpty

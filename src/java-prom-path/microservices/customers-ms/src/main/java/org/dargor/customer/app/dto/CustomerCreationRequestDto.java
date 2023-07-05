@@ -1,5 +1,6 @@
 package org.dargor.customer.app.dto;
 
+import com.fasterxml.jackson.annotation.JsonInclude;
 import lombok.*;
 
 import javax.validation.constraints.Email;
@@ -11,6 +12,7 @@ import java.util.List;
 @ToString
 @NoArgsConstructor
 @AllArgsConstructor
+@JsonInclude(JsonInclude.Include.NON_EMPTY)
 public class CustomerCreationRequestDto {
 
     @NotEmpty
@@ -20,7 +22,6 @@ public class CustomerCreationRequestDto {
     private String lastName;
 
     @Email
-    @NotEmpty
     private String email;
 
     @NotEmpty

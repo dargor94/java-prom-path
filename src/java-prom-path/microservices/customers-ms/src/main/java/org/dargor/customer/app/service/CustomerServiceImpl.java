@@ -31,11 +31,11 @@ public class CustomerServiceImpl implements CustomerService {
             var customer = customerMapper.customerCreationRequestToCustomer(request);
             var savedCustomer = customerRepository.save(customer);
             var customerResponse = customerMapper.customerToCustomerResponse(savedCustomer);
-            var wishListRequest = productMapper.toWishListDto(customerResponse, request.getProducts());
-            var products = productClient.createProducts(wishListRequest);
-            wishListRequest.setProducts(products.getProducts());
-            log.info(String.format("Customer created successfully [request: %s] [response: %s]", request, wishListRequest));
-            return wishListRequest;
+            var wishListResponse = productMapper.toWishListDto(customerResponse, request.getProducts());
+            var products = productClient.createProducts(wishListResponse);
+            wishListResponse.setProducts(products.getProducts());
+            log.info(String.format("Customer created successfully [request: %s] [response: %s]", request, wishListResponse));
+            return wishListResponse;
         } catch (Exception e) {
             log.error(String.format("Error found creating customer [request: %s] [error: %s]", request.toString(), e.getMessage()));
             throw e;
