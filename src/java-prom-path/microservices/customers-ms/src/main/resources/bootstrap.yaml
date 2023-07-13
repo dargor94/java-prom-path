@@ -1,9 +1,7 @@
 spring:
   application.name: customer-ms
   profiles:
-    active:
-      - dev
-      - vault
+    active: dev
   cloud:
     config:
       name: customer-ms
@@ -20,9 +18,9 @@ eureka:
       defaultZone: http://localhost:8082/eureka/
 feign:
   product-ms:
-    id: "product-ms"
-    url: "product"
-    port: "8080"
-    host: "http://localhost"
-    wishlist-url: "wish-list"
-    create-url: "create"
+    host: ${feign.product-ms.host}
+    id: ${feign.product-ms.id}
+    url: ${feign.product-ms.url}
+    port: ${feign.product-ms.port}
+    wishlist-url: ${feign.product-ms.wishlist-url}
+    create-url: ${feign.product-ms.create-url}
