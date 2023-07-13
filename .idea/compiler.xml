@@ -11,13 +11,26 @@
           <entry name="$USER_HOME$/.gradle/caches/modules-2/files-2.1/org.projectlombok/lombok-mapstruct-binding/0.2.0/2f1cf9ced7b720ba4996c942b816669e63f0fa4f/lombok-mapstruct-binding-0.2.0.jar" />
           <entry name="$USER_HOME$/.gradle/caches/modules-2/files-2.1/org.projectlombok/lombok/1.18.24/13a394eed5c4f9efb2a6d956e2086f1d81e857d9/lombok-1.18.24.jar" />
         </processorPath>
-        <module name="products-ms.main" />
+        <module name="org.dargor.customers-ms.main" />
       </profile>
     </annotationProcessing>
     <bytecodeTargetLevel>
+      <module name="aop" target="11" />
+      <module name="aop.main" target="11" />
+      <module name="aop.test" target="11" />
+      <module name="batch" target="11" />
+      <module name="batch.test" target="11" />
+      <module name="customers-ms" target="11" />
+      <module name="customers-ms.main" target="11" />
+      <module name="customers-ms.test" target="11" />
       <module name="microservices" target="11" />
       <module name="microservices.main" target="11" />
       <module name="microservices.test" target="11" />
+      <module name="products-ms" target="11" />
+      <module name="products-ms.test" target="11" />
+      <module name="reflection" target="11" />
+      <module name="reflection.main" target="11" />
+      <module name="reflection.test" target="11" />
     </bytecodeTargetLevel>
   </component>
 </project>

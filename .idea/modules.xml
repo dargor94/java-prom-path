@@ -2,13 +2,23 @@
 <project version="4">
   <component name="ProjectModuleManager">
     <modules>
-      <module fileurl="file://$PROJECT_DIR$/.idea/modules/aop.main.iml" filepath="$PROJECT_DIR$/.idea/modules/aop.main.iml" />
+      <module fileurl="file://$PROJECT_DIR$/.idea/modules/aop.iml" filepath="$PROJECT_DIR$/.idea/modules/aop.iml" />
+      <module fileurl="file://$PROJECT_DIR$/.idea/modules/aop.test.iml" filepath="$PROJECT_DIR$/.idea/modules/aop.test.iml" />
+      <module fileurl="file://$PROJECT_DIR$/src/java-prom-path/batch/batch.iml" filepath="$PROJECT_DIR$/src/java-prom-path/batch/batch.iml" />
       <module fileurl="file://$PROJECT_DIR$/.idea/modules/batch.main.iml" filepath="$PROJECT_DIR$/.idea/modules/batch.main.iml" />
-      <module fileurl="file://$PROJECT_DIR$/.idea/modules/customers-ms.main.iml" filepath="$PROJECT_DIR$/.idea/modules/customers-ms.main.iml" />
+      <module fileurl="file://$PROJECT_DIR$/.idea/modules/batch.test.iml" filepath="$PROJECT_DIR$/.idea/modules/batch.test.iml" />
+      <module fileurl="file://$PROJECT_DIR$/.idea/modules/customers-ms.iml" filepath="$PROJECT_DIR$/.idea/modules/customers-ms.iml" />
+      <module fileurl="file://$PROJECT_DIR$/.idea/modules/customers-ms.test.iml" filepath="$PROJECT_DIR$/.idea/modules/customers-ms.test.iml" />
       <module fileurl="file://$PROJECT_DIR$/src/java-prom-path/io/io.iml" filepath="$PROJECT_DIR$/src/java-prom-path/io/io.iml" />
       <module fileurl="file://$PROJECT_DIR$/src/java-prom-path/java-prom-path.iml" filepath="$PROJECT_DIR$/src/java-prom-path/java-prom-path.iml" />
+      <module fileurl="file://$PROJECT_DIR$/.idea/modules/org.dargor.customers-ms.main.iml" filepath="$PROJECT_DIR$/.idea/modules/org.dargor.customers-ms.main.iml" />
+      <module fileurl="file://$PROJECT_DIR$/src/java-prom-path/microservices/products-ms/products-ms.iml" filepath="$PROJECT_DIR$/src/java-prom-path/microservices/products-ms/products-ms.iml" />
       <module fileurl="file://$PROJECT_DIR$/.idea/modules/products-ms.main.iml" filepath="$PROJECT_DIR$/.idea/modules/products-ms.main.iml" />
+      <module fileurl="file://$PROJECT_DIR$/.idea/modules/products-ms.test.iml" filepath="$PROJECT_DIR$/.idea/modules/products-ms.test.iml" />
       <module fileurl="file://$PROJECT_DIR$/src/java-prom-path/recursion/recursion.iml" filepath="$PROJECT_DIR$/src/java-prom-path/recursion/recursion.iml" />
+      <module fileurl="file://$PROJECT_DIR$/.idea/modules/reflection.iml" filepath="$PROJECT_DIR$/.idea/modules/reflection.iml" />
+      <module fileurl="file://$PROJECT_DIR$/.idea/modules/reflection.main.iml" filepath="$PROJECT_DIR$/.idea/modules/reflection.main.iml" />
+      <module fileurl="file://$PROJECT_DIR$/.idea/modules/reflection.test.iml" filepath="$PROJECT_DIR$/.idea/modules/reflection.test.iml" />
       <module fileurl="file://$PROJECT_DIR$/src/java-prom-path/threads/threads.iml" filepath="$PROJECT_DIR$/src/java-prom-path/threads/threads.iml" />
     </modules>
   </component>
