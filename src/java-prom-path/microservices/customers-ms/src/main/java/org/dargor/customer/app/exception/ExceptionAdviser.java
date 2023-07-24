@@ -4,6 +4,7 @@ import feign.FeignException;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import org.springframework.web.HttpMediaTypeNotSupportedException;
 import org.springframework.web.bind.MethodArgumentNotValidException;
 import org.springframework.web.bind.annotation.ExceptionHandler;
 import org.springframework.web.bind.annotation.RestControllerAdvice;
@@ -33,14 +34,23 @@ public class ExceptionAdviser {
     }
 
     @ExceptionHandler(FeignException.NotFound.class)
-    public final ResponseEntity<ErrorMessageResponse> genericError(FeignException.NotFound e) {
+    public final ResponseEntity<ErrorMessageResponse> feignNotFound() {
         var errorMessage = new ErrorMessageResponse(ErrorDefinition.PATH_NOT_FOUND.getMessage(), HttpStatus.NOT_FOUND.value());
         log.error(String.format("Exception found with code %d.", errorMessage.getCode()));
-        return new ResponseEntity<>(errorMessage, null, 490);
+        return new ResponseEntity<>(errorMessage, null, HttpStatus.NOT_FOUND.value());
     }
 
+
+    @ExceptionHandler(HttpMediaTypeNotSupportedException.class)
+    public final ResponseEntity<ErrorMessageResponse> contentTypeError() {
+        var errorMessage = new ErrorMessageResponse(ErrorDefinition.CONTENT_TYPE_NOT_SUPPORTED.getMessage(), HttpStatus.UNSUPPORTED_MEDIA_TYPE.value());
+        log.error(String.format("Exception found with code %d.", errorMessage.getCode()));
+        return new ResponseEntity<>(errorMessage, null, HttpStatus.UNSUPPORTED_MEDIA_TYPE.value());
+    }
+
+
     @ExceptionHandler(Exception.class)
-    public final ResponseEntity<ErrorMessageResponse> genericError(Exception e) {
+    public final ResponseEntity<ErrorMessageResponse> genericError() {
         var errorMessage = new ErrorMessageResponse(ErrorDefinition.UNKNOWN_ERROR.getMessage(), HttpStatus.BAD_REQUEST.value());
         log.error(String.format("Exception found with code %d.", 490));
         return new ResponseEntity<>(errorMessage, null, 490);

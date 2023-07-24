@@ -12,14 +12,14 @@ import java.util.List;
 import java.util.UUID;
 
 @FeignClient(name = "ProductClient",
-        url = "${feign.product-ms.host}:${feign.product-ms.port}/${feign.product-ms.id}/${feign.product-ms.url}"
+        url = "${routing.product-ms.host}:${routing.product-ms.port}/${routing.product-ms.id}/${routing.product-ms.url}"
 )
 public interface ProductClient {
 
-    @GetMapping("/${feign.product-ms.wishlist-url}/{customerId}")
+    @GetMapping("/${routing.product-ms.wishlist-url}/{customerId}")
     List<ProductDto> getWishList(@PathVariable UUID customerId);
 
-    @PostMapping("/${feign.product-ms.create-url}")
+    @PostMapping("/${routing.product-ms.create-url}")
     WishListDto createProducts(@RequestBody WishListDto products);
 
 }

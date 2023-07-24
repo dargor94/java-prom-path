@@ -7,7 +7,6 @@ import lombok.Setter;
 import org.hibernate.annotations.GenericGenerator;
 
 import javax.persistence.*;
-import java.io.Serializable;
 import java.util.UUID;
 
 @Getter
@@ -16,9 +15,7 @@ import java.util.UUID;
 @NoArgsConstructor
 @AllArgsConstructor
 @Table(name = "address")
-public class Address implements Serializable {
-
-    private static final long serialVersionUID = 713685204499355194L;
+public class Address {
 
     @Id
     @GenericGenerator(name = "uuid2", strategy = "uuid2")
