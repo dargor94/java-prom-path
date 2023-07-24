@@ -10,5 +10,5 @@ public interface ProductService {
 
     List<ProductDto> getProducts(UUID customerId);
 
-    WishListDto createWishList(WishListDto request);
+    WishListDto createProducts(WishListDto request);
 }

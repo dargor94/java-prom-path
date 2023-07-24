@@ -27,8 +27,8 @@ public class ProductController {
     }
 
     @PostMapping("/create")
-    public ResponseEntity<WishListDto> createWishList(@RequestBody @Valid WishListDto request) {
-        var response = productService.createWishList(request);
+    public ResponseEntity<WishListDto> createProducts(@RequestBody @Valid WishListDto request) {
+        var response = productService.createProducts(request);
         return new ResponseEntity<>(response, HttpStatus.CREATED);
     }
 

@@ -33,7 +33,7 @@ public class ProductServiceImpl implements ProductService {
     }
 
     @Override
-    public WishListDto createWishList(WishListDto request) {
+    public WishListDto createProducts(WishListDto request) {
         try {
             var products = productMapper.wishListRequestToProductList(request);
             var savedProducts = productRepository.saveAll(products);
