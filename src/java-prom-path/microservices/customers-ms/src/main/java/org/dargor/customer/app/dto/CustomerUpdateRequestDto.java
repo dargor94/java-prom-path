@@ -8,9 +8,7 @@ import javax.validation.constraints.NotEmpty;
 import java.util.List;
 import java.util.UUID;
 
-@Getter
-@Setter
-@ToString
+@Data
 @NoArgsConstructor
 @AllArgsConstructor
 @JsonInclude(JsonInclude.Include.NON_EMPTY)

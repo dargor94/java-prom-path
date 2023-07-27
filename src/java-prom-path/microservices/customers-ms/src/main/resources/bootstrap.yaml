@@ -23,9 +23,4 @@ routing:
     port: ${feign.product-ms.port}
     wishlist-url: ${feign.product-ms.wishlist-url}
     create-url: ${feign.product-ms.create-url}
-  auth-svc:
-    host: ${feign.auth-svc.host}
-    id: ${feign.auth-svc.id}
-    url: ${feign.auth-svc.url}
-    port: ${feign.auth-svc.port}
-    token-url: ${feign.auth-svc.token-url}
+

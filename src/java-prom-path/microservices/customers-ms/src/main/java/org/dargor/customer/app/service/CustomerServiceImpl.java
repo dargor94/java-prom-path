@@ -1,6 +1,6 @@
 package org.dargor.customer.app.service;
 
-import lombok.AllArgsConstructor;
+import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.dargor.customer.app.client.ProductClient;
 import org.dargor.customer.app.dto.CustomerCreationRequestDto;
@@ -16,11 +16,10 @@ import java.util.UUID;
 
 @Slf4j
 @Service
-@AllArgsConstructor
+@RequiredArgsConstructor
 public class CustomerServiceImpl implements CustomerService {
 
     private final CustomerRepository customerRepository;
-
     private final ProductClient productClient;
     private final CustomerMapper customerMapper = CustomerMapper.INSTANCE;
     private final ProductMapper productMapper = ProductMapper.INSTANCE;

@@ -9,8 +9,8 @@ public enum ErrorDefinition {
     UNKNOWN_ERROR("Unknown error occurred"),
     ENTITY_NOT_FOUND("Entity not found"),
     PATH_NOT_FOUND("Path not found"),
-    CONTENT_TYPE_NOT_SUPPORTED("Content type not supported")
-    ;
+    CONTENT_TYPE_NOT_SUPPORTED("Content type not supported"),
+    NOT_AUTHORIZED("Not Authorized");
 
     private final String message;
 
