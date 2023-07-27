@@ -1,25 +1,53 @@
 package org.dargor.customer.app.client;
 
+import lombok.RequiredArgsConstructor;
+import org.dargor.customer.app.client.config.ProductClientProperties;
 import org.dargor.customer.app.dto.ProductDto;
 import org.dargor.customer.app.dto.WishListDto;
-import org.springframework.cloud.openfeign.FeignClient;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestBody;
+import org.springframework.core.ParameterizedTypeReference;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.MediaType;
+import org.springframework.stereotype.Component;
+import org.springframework.web.reactive.function.client.WebClient;
+import reactor.core.publisher.Mono;
 
 import java.util.List;
 import java.util.UUID;
 
-@FeignClient(name = "ProductClient",
-        url = "${routing.product-ms.host}:${routing.product-ms.port}/${routing.product-ms.id}/${routing.product-ms.url}"
-)
-public interface ProductClient {
+@Component
+@RequiredArgsConstructor
+public class ProductClient {
 
-    @GetMapping("/${routing.product-ms.wishlist-url}/{customerId}")
-    List<ProductDto> getWishList(@PathVariable UUID customerId);
+    private final ProductClientProperties properties;
+    private final WebClient.Builder webClientBuilder;
+    private final String baseUrl = properties.getHost() + ":" + properties.getPort() + properties.getUrl();
 
-    @PostMapping("/${routing.product-ms.create-url}")
-    WishListDto createProducts(@RequestBody WishListDto products);
+    public List<ProductDto> getWishList(UUID customerId) {
+        final String url = baseUrl + properties.getWishlistUrl() + "/" + customerId;
+        return webClientBuilder.build()
+                .get()
+                .uri(url)
+                .accept(MediaType.valueOf(MediaType.APPLICATION_JSON_VALUE))
+                .retrieve()
+                .onStatus(HttpStatus::is4xxClientError, clientResponse -> Mono.error(RuntimeException::new))
+                .onStatus(HttpStatus::is5xxServerError, clientResponse -> Mono.error(Exception::new))
+                .bodyToMono(new ParameterizedTypeReference<List<ProductDto>>() {
+                }).block();
+    }
 
+
+    public WishListDto createProducts(WishListDto products, String token) {
+        final String url = baseUrl + properties.getCreateUrl();
+        return webClientBuilder.build()
+                .post()
+                .uri(url)
+                .headers(h -> h.setBearerAuth(token))
+                .bodyValue(products)
+                .accept(MediaType.valueOf(MediaType.APPLICATION_JSON_VALUE))
+                .retrieve()
+                .onStatus(HttpStatus::is4xxClientError, clientResponse -> Mono.error(RuntimeException::new))
+                .onStatus(HttpStatus::is5xxServerError, clientResponse -> Mono.error(Exception::new))
+                .bodyToMono(WishListDto.class)
+                .block();
+    }
 }
