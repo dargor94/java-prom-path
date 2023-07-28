@@ -56,7 +56,6 @@ dependencies {
 
     testImplementation(
             'org.springframework.boot:spring-boot-starter-test',
-            'junit:junit-dep:4.11'
 
     )
 
