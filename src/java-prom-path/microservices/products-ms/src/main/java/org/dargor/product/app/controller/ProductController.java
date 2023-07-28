@@ -23,7 +23,7 @@ public class ProductController {
 
     @GetMapping("/wish-list/{customerId}")
     public ResponseEntity<List<ProductDto>> getWishList(@PathVariable UUID customerId) {
-        return ResponseEntity.ok(productService.getProducts(customerId));
+        return ResponseEntity.ok(productService.getWishList(customerId));
     }
 
     @PostMapping("/create")

@@ -7,10 +7,13 @@ import org.dargor.customer.app.dto.CustomerCreationRequestDto;
 import org.dargor.customer.app.dto.CustomerDto;
 import org.dargor.customer.app.dto.CustomerUpdateRequestDto;
 import org.dargor.customer.app.dto.WishListDto;
+import org.dargor.customer.app.exception.CustomException;
+import org.dargor.customer.app.exception.ErrorDefinition;
 import org.dargor.customer.core.repository.CustomerRepository;
 import org.dargor.customer.core.util.mapper.CustomerMapper;
 import org.dargor.customer.core.util.mapper.ProductMapper;
 import org.springframework.stereotype.Service;
+import org.springframework.util.ObjectUtils;
 
 import java.util.UUID;
 
@@ -44,6 +47,9 @@ public class CustomerServiceImpl implements CustomerService {
     @Override
     public CustomerDto getCustomer(UUID customerId) {
         try {
+            if (ObjectUtils.isEmpty(customerId))
+                throw new CustomException(ErrorDefinition.INVALID_INPUT_DATA.getMessage(), null);
+
             var customer = customerRepository.getById(customerId);
             var response = customerMapper.customerToCustomerResponse(customer);
             log.info(String.format("Customer fetched successfully [customerId: %s] [response: %s]", customerId, response.toString()));
@@ -70,6 +76,9 @@ public class CustomerServiceImpl implements CustomerService {
 
     public WishListDto getWishList(UUID customerId) {
         try {
+            if (ObjectUtils.isEmpty(customerId))
+                throw new CustomException(ErrorDefinition.INVALID_INPUT_DATA.getMessage(), null);
+
             var wishList = productClient.getWishList(customerId);
             log.info(String.format("Products fetched successfully [products %s]", wishList.toString()));
 

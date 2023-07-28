@@ -8,7 +8,7 @@ import java.util.UUID;
 
 public interface ProductService {
 
-    List<ProductDto> getProducts(UUID customerId);
+    List<ProductDto> getWishList(UUID customerId);
 
     WishListDto createProducts(WishListDto request);
 }

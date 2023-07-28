@@ -19,9 +19,15 @@ public class ExceptionAdviser {
     public final ResponseEntity<ErrorResponse> argsNotValid(MethodArgumentNotValidException ex) {
         Map<String, String> errors = new HashMap<>();
         ex.getBindingResult().getFieldErrors().forEach(fieldError -> errors.put(fieldError.getField(), fieldError.getDefaultMessage()));
-        var errorMessage = new ErrorResponse(String.format("%s: %s", ErrorDefinition.INVALID_FIELDS.getMessage(), errors), HttpStatus.BAD_REQUEST.value());
+        var errorMessage = new ErrorResponse(String.format("%s: %s", ErrorDefinition.INVALID_INPUT_DATA.getMessage(), errors), HttpStatus.BAD_REQUEST.value());
         log.error(String.format("Exception found with code %s for field validation didn't passed.", errorMessage.getCode()));
         return new ResponseEntity<>(errorMessage, HttpStatus.BAD_REQUEST);
+    }
+
+    @ExceptionHandler(CustomException.class)
+    public final ResponseEntity<CustomException> customError(CustomException e) {
+        log.error(String.format("Exception found with code %d.", e.getCode()));
+        return ResponseEntity.status(e.getCode()).body(e);
     }
 
     @ExceptionHandler(EntityNotFoundException.class)

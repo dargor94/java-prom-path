@@ -20,7 +20,7 @@ public class ProductServiceImpl implements ProductService {
     private final ProductMapper productMapper = ProductMapper.INSTANCE;
 
     @Override
-    public List<ProductDto> getProducts(UUID customerId) {
+    public List<ProductDto> getWishList(UUID customerId) {
         try {
             var product = productRepository.findByCustomerId(customerId);
             var response = productMapper.productsToProductDtoList(product);

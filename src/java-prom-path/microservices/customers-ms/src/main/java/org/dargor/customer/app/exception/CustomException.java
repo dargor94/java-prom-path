@@ -13,8 +13,8 @@ public class CustomException extends RuntimeException {
     private String message;
     private int code;
 
-    public CustomException(String message, int code) {
+    public CustomException(String message, Integer code) {
         this.message = message;
-        this.code = code;
+        this.code = code == null ? 490 : code;
     }
 }
