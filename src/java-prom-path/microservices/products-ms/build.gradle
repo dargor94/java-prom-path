@@ -26,8 +26,6 @@ ext {
     set('springCloudVersion', "2020.0.5")
 }
 
-apply plugin: "org.sonarqube"
-
 dependencies {
     implementation(
             'org.springframework.boot:spring-boot-starter-validation',
@@ -62,6 +60,9 @@ dependencies {
     testImplementation 'org.springframework.boot:spring-boot-starter-test'
 
 }
+
+apply plugin: 'io.spring.dependency-management'
+apply plugin: "org.sonarqube"
 
 dependencyManagement {
     imports {
