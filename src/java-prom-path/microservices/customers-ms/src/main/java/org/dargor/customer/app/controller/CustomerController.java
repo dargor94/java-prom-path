@@ -41,7 +41,7 @@ public class CustomerController {
         return ResponseEntity.ok(response);
     }
 
-    @GetMapping(value = "/wish-list/{customerId}", consumes = {MediaType.APPLICATION_JSON_VALUE}, produces = {MediaType.APPLICATION_JSON_VALUE})
+    @GetMapping(value = "/wish-list/{customerId}", produces = {MediaType.APPLICATION_JSON_VALUE})
     public ResponseEntity<WishListDto> getWishList(@PathVariable UUID customerId) {
         var response = customerService.getWishList(customerId);
         return ResponseEntity.ok(response);

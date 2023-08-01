@@ -14,6 +14,7 @@ import java.util.List;
 public class WishListDto {
 
     private CustomerDto customer;
+
     private List<ProductDto> products;
 
 }

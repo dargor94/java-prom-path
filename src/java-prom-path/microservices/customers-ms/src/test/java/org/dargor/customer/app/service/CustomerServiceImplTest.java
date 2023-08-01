@@ -4,7 +4,6 @@ import org.dargor.customer.app.client.ProductClient;
 import org.dargor.customer.app.exception.CustomException;
 import org.dargor.customer.app.util.MockedTestData;
 import org.dargor.customer.core.repository.CustomerRepository;
-import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;
@@ -30,12 +29,7 @@ class CustomerServiceImplTest {
 
     @Mock
     private ProductClient productClient;
-
-    @BeforeEach
-    void setUp() {
-
-    }
-
+    
     @Test
     @DisplayName("createCustomer - OK")
     void createCustomer() {

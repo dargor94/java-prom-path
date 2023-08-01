@@ -11,8 +11,11 @@ import java.math.BigDecimal;
 public class ProductDto {
 
     private String denomination;
+
     private String brand;
+
     private long quantity;
+
     private BigDecimal unitPrice;
 
 }

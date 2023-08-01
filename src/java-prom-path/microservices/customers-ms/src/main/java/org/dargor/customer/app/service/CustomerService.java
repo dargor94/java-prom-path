@@ -1,11 +1,10 @@
 package org.dargor.customer.app.service;
 
-import org.dargor.customer.app.dto.CustomerDto;
-import org.dargor.customer.app.dto.WishListDto;
 import org.dargor.customer.app.dto.CustomerCreationRequestDto;
+import org.dargor.customer.app.dto.CustomerDto;
 import org.dargor.customer.app.dto.CustomerUpdateRequestDto;
+import org.dargor.customer.app.dto.WishListDto;
 
-import java.util.List;
 import java.util.UUID;
 
 public interface CustomerService {
