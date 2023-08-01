@@ -10,8 +10,8 @@ import java.time.LocalDateTime;
 public class CustomException extends RuntimeException {
 
     private final String timestamp = LocalDateTime.now().toString();
-    private String message;
-    private int code;
+    private final String message;
+    private final int code;
 
     public CustomException(String message, Integer code) {
         this.message = message;

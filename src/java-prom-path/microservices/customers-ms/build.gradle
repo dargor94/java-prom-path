@@ -2,6 +2,7 @@ plugins {
     id 'java'
     id 'org.springframework.boot' version '2.5.14'
     id 'io.spring.dependency-management' version '1.0.15.RELEASE'
+    id "org.sonarqube" version "4.2.1.3168"
 }
 
 group = 'org.dargor'
@@ -25,7 +26,10 @@ ext {
     set('springCloudVersion', "2020.0.5")
 }
 
+apply plugin: "org.sonarqube"
+
 dependencies {
+
     implementation(
             'org.springframework.boot:spring-boot-starter-validation',
             'org.springframework.boot:spring-boot-starter-web',
@@ -37,14 +41,16 @@ dependencies {
             'org.springframework.cloud:spring-cloud-starter-bootstrap',
             'org.springframework.cloud:spring-cloud-starter-netflix-eureka-client',
             'org.mapstruct:mapstruct:1.5.5.Final'
+
     )
 
+    productionRuntimeClasspath 'org.sonarsource.scanner.gradle:sonarqube-gradle-plugin:4.3.0.3225'
 
     compileOnly(
             'org.springframework.cloud:spring-cloud-starter-sleuth',
             'org.projectlombok:lombok',
             'com.h2database:h2',
-            'org.apache.maven.plugins:maven-pmd-plugin:3.21.0'
+
     )
 
     annotationProcessor(
@@ -52,12 +58,10 @@ dependencies {
             'org.springframework.boot:spring-boot-configuration-processor',
             'org.projectlombok:lombok-mapstruct-binding:0.2.0',
             'org.projectlombok:lombok'
-    )
-
-    testImplementation(
-            'org.springframework.boot:spring-boot-starter-test',
 
     )
+
+    testImplementation 'org.springframework.boot:spring-boot-starter-test'
 
 }
 

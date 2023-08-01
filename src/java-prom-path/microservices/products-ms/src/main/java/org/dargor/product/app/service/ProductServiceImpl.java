@@ -16,8 +16,8 @@ import java.util.UUID;
 @AllArgsConstructor
 public class ProductServiceImpl implements ProductService {
 
+    private static final ProductMapper productMapper = ProductMapper.INSTANCE;
     private final ProductRepository productRepository;
-    private final ProductMapper productMapper = ProductMapper.INSTANCE;
 
     @Override
     public List<ProductDto> getWishList(UUID customerId) {

@@ -22,10 +22,10 @@ import java.util.UUID;
 @RequiredArgsConstructor
 public class CustomerServiceImpl implements CustomerService {
 
+    private static final CustomerMapper customerMapper = CustomerMapper.INSTANCE;
+    private static final ProductMapper productMapper = ProductMapper.INSTANCE;
     private final CustomerRepository customerRepository;
     private final ProductClient productClient;
-    private final CustomerMapper customerMapper = CustomerMapper.INSTANCE;
-    private final ProductMapper productMapper = ProductMapper.INSTANCE;
 
     @Override
     public WishListDto createCustomer(CustomerCreationRequestDto request) {
