@@ -12,8 +12,8 @@
       <module fileurl="file://$PROJECT_DIR$/src/java-prom-path/io/io.iml" filepath="$PROJECT_DIR$/src/java-prom-path/io/io.iml" />
       <module fileurl="file://$PROJECT_DIR$/src/java-prom-path/java-prom-path.iml" filepath="$PROJECT_DIR$/src/java-prom-path/java-prom-path.iml" />
       <module fileurl="file://$PROJECT_DIR$/.idea/modules/org.dargor.customers-ms.main.iml" filepath="$PROJECT_DIR$/.idea/modules/org.dargor.customers-ms.main.iml" />
+      <module fileurl="file://$PROJECT_DIR$/.idea/modules/org.dargor.products-ms.main.iml" filepath="$PROJECT_DIR$/.idea/modules/org.dargor.products-ms.main.iml" />
       <module fileurl="file://$PROJECT_DIR$/src/java-prom-path/microservices/products-ms/products-ms.iml" filepath="$PROJECT_DIR$/src/java-prom-path/microservices/products-ms/products-ms.iml" />
-      <module fileurl="file://$PROJECT_DIR$/.idea/modules/products-ms.main.iml" filepath="$PROJECT_DIR$/.idea/modules/products-ms.main.iml" />
       <module fileurl="file://$PROJECT_DIR$/.idea/modules/products-ms.test.iml" filepath="$PROJECT_DIR$/.idea/modules/products-ms.test.iml" />
       <module fileurl="file://$PROJECT_DIR$/src/java-prom-path/recursion/recursion.iml" filepath="$PROJECT_DIR$/src/java-prom-path/recursion/recursion.iml" />
       <module fileurl="file://$PROJECT_DIR$/.idea/modules/reflection.iml" filepath="$PROJECT_DIR$/.idea/modules/reflection.iml" />
