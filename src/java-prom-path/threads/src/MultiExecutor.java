@@ -4,14 +4,14 @@ import java.util.List;
 /**
  * Ejercicio realzado en curso udemy
  *
- * @url: https://globallogic.udemy.com/course/java-multithreading-concurrency-performance-optimization
+ * @url: <a href="https://globallogic.udemy.com/course/java-multithreading-concurrency-performance-optimization">...</a>
  */
 public class MultiExecutor {
 
     private List<Runnable> tasks;
 
     /**
-     * @param tasks to executed concurrently
+     * @param tasks to be executed concurrently
      */
     public MultiExecutor(List<Runnable> tasks) {
         this.tasks = tasks;
